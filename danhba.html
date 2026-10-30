@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Bạ 5 Nhóm Xử Lý Tờ Khai - Đội Thông Quan</title>
+    <title>Danh Bạ Nhóm Nghiệp Vụ - Đội Thông Quan</title>
     <style>
         /* CSS CHUNG */
         body {
@@ -23,7 +23,7 @@
 
         /* HEADER LỚN (MÀU XANH DƯƠNG ĐẬM) */
         header {
-            background-color: #0d47a1; /* Màu xanh dương đậm */
+            background-color: #0d47a1;
             color: white;
             padding: 20px 40px;
             border-radius: 20px;
@@ -96,7 +96,7 @@
         }
 
         .title-area h1 {
-            color: #fbc02d; /* Màu vàng đậm */
+            color: #fbc02d;
             margin: 0 0 10px 0;
             font-size: 28px;
         }
@@ -108,7 +108,7 @@
         }
 
         .effective-date {
-            background-color: #fbc02d; /* Màu vàng đậm */
+            background-color: #fbc02d;
             color: #0d47a1;
             padding: 5px 15px;
             border-radius: 15px;
@@ -116,6 +116,34 @@
             font-size: 12px;
             font-weight: bold;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* KHU VỰC TABS */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background-color: white;
+            color: #0d47a1;
+            border: 2px solid #0d47a1;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background-color: #e3f2fd;
+        }
+
+        .tab-btn.active {
+            background-color: #0d47a1;
+            color: white;
         }
 
         /* THẺ THỐNG KÊ (CARDS) */
@@ -148,9 +176,16 @@
             color: #666;
             text-transform: uppercase;
             margin-top: 5px;
+            text-align: center;
         }
 
         /* KHU VỰC BẢNG DANH SÁCH */
+        .group-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
         .group-table-section {
             background-color: white;
             border-radius: 20px;
@@ -158,16 +193,18 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        /* HEADER CỦA NHÓM (MÀU XANH DƯƠNG NHẠT) */
+        /* HEADER CỦA NHÓM */
         .group-header {
-            background-color: #bbdefb; /* Màu xanh dương nhạt */
+            background-color: #bbdefb;
             color: #0d47a1;
             padding: 15px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 20px 20px 0 0;
         }
+
+        .group-header.xuat-khau { background-color: #c8e6c9; color: #2e7d32; }
+        .group-header.kiem-hoa { background-color: #ffcc80; color: #e65100; }
 
         .group-info {
             display: flex;
@@ -176,15 +213,16 @@
         }
 
         .group-number {
-            font-size: 48px;
+            font-size: 36px;
             font-weight: bold;
             border: 2px solid white;
             border-radius: 50%;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .group-details {
@@ -219,16 +257,12 @@
             margin-right: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+        
+        .xuat-khau .group-cbcc-count { background-color: #2e7d32; }
+        .kiem-hoa .group-cbcc-count { background-color: #e65100; }
 
-        .group-cbcc-count .number {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .group-cbcc-count .label {
-            font-size: 10px;
-            text-transform: uppercase;
-        }
+        .group-cbcc-count .number { font-size: 24px; font-weight: bold; }
+        .group-cbcc-count .label { font-size: 10px; text-transform: uppercase; }
 
         /* BẢNG DANH SÁCH NHÂN VIÊN */
         .staff-table {
@@ -245,38 +279,18 @@
             text-transform: uppercase;
             border-bottom: 2px solid #e0e0e0;
         }
+        
+        .xuat-khau-table thead th { color: #2e7d32; }
+        .kiem-hoa-table thead th { color: #e65100; }
 
-        .staff-table tbody tr {
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .staff-table tbody tr:last-child {
-            border-bottom: none;
-        }
-
-        .staff-table tbody td {
-            padding: 15px 25px;
-            color: #0d47a1;
-            font-weight: bold;
-        }
-
-        .staff-table tbody tr.leader-row {
-            background-color: #fbfbfb;
-        }
-
-        /* Định dạng các cột cụ thể */
-        .staff-table tbody td.stt {
-            width: 50px;
-        }
-
-        .staff-table tbody td.ghi-so {
-            color: #666;
-            font-weight: normal;
-        }
+        .staff-table tbody tr { border-bottom: 1px solid #e0e0e0; }
+        .staff-table tbody tr:last-child { border-bottom: none; }
+        .staff-table tbody td { padding: 15px 25px; color: #333; font-weight: bold; }
+        
+        .staff-table tbody tr:hover { background-color: #f5f5f5; }
 
         .staff-table tbody td.dien-thoai {
             color: #0d47a1;
-            font-weight: bold;
             letter-spacing: 0.5px;
         }
 
@@ -290,28 +304,12 @@
             font-weight: bold;
         }
 
-        .badge-nhom-truong {
-            background-color: #fff9c4; /* Vàng nhạt */
-            color: #f57f17; /* Vàng đậm */
-            border: 1px solid #fdd835;
-        }
+        .badge-truong { background-color: #fff9c4; color: #f57f17; border: 1px solid #fdd835; }
+        .badge-truong::before { content: '⭐'; margin-right: 5px; }
+        .badge-thanh-vien { background-color: #e3f2fd; color: #1565c0; border: 1px solid #90caf9; }
+        .badge-cntt { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
 
-        .badge-nhom-truong::before {
-            content: '⭐';
-            margin-right: 5px;
-        }
-
-        .badge-tiep-nhan {
-            background-color: #e3f2fd; /* Xanh nhạt */
-            color: #1565c0; /* Xanh đậm */
-            border: 1px solid #90caf9;
-        }
-
-        .badge-cntt {
-            background-color: #e8f5e9; /* Xanh lá nhạt */
-            color: #2e7d32; /* Xanh lá đậm */
-            border: 1px solid #a5d6a7;
-        }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
@@ -320,146 +318,237 @@
         <header>
             <div class="search-bar">
                 <label for="search-input">Tìm kiếm:</label>
-                <input type="text" id="search-input" placeholder="Nhập Họ và Tên để tìm...">
+                <input type="text" id="search-input" placeholder="Nhập Họ và Tên, Số điện thoại hoặc Mã bàn...">
             </div>
             <div class="header-content">
-                <div class="logo-area">
-                    <!-- Placeholder Logo Hải quan (Base64) - Thay thế đường link src bằng logo thực tế -->
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFnklEQVR4nO2XaXBUVRCGq8qK4o4uWKLVqKMoKiqKILghuIILuCO4I7ggOKAr7kgXN0XwR0EVURQXBFwQlEUURVxAFhURXBFckEWRXRAZ3BBckEV2EXn94fS9S+f1vft6etK3uXN5+vXv++p//TofD4QfHj5E//fD+96vD+fPHy4fHh8eHx4fhveLw7D+8OEh+ePh84cP588fHhcODw/DHx4vHh4Of3h8eHjI8PnDxwshw8Pjwh8eHh8eHh8eHjI8vHgc3i8Ohg8Ph8eHx+HDw+PD4/Dw+PP84ePl9YePH0L8+CHk5YcQl8//54eQlx/f8vK9vDz548N8L/8f8v7b4f3x8H4I8Xh/PDw8PDweHh6PD4+PB/554PD5fMvw8fDxvHj4eFh8vDzeeMvw8Xh5vLy8vDxeHj/88Pn/PF7+vzxeevjx+fzw+fzw+fzw+fzw+V5eeuSlt4df53v56eGv00NeXnrp7enlt7S/8nN5+XN56eWHX5fp4be8v9LTS08vXfp5etLTS5eXnr99f1w+f/9+vny+v/3/v3xfPnp56eWFv4eHLtNDLx8O8uEjHw7S46Pfjw7S46PfD+9vDx+On97ePrp4fvp4fXh58S4eLj4ufgghXFwunC4uHq58XFwuLi4XVz6efHh6erpycvW0pD7fPj196ZGnB8+7XHrI6ZGnBx55evC8y8vnS8/ffD5/etL505NOfb59evrSk6fPfPnS85cnz+dZfvD84Onx8ZafHh9v+enylufD5w3f5w3fyw3fR4+Xv4cnHx5v+T5v+F5v+F5ePn+ep/e89Z633vP/8+f9/f26fPj/9ffryvTx/Lp88vx/Pn+uTx/f8vz9unzy/OnlyfOf+Xz8Zz6f//yYj8/nh5eP9/SUp88PDw/S54f0+SF9fkifH9Lnh/Tx8f7+fnt4f3t4f3p8uPh4Xb5cXlyuXBwuPtz85PP59XvT9798Pnm5cnE5X44XN4f75fHh+ePhS6+PPj6e//7YfHxsPr70+nj/9+8f//458p+P578/Ph4enp7f//3b5/P/+Hj8P//7b5//57/+N/16+r7r5YcQf9vLj5fL48PL4+Hj4+HxeHm8PN4yvDxefn883n9P5/T++TmdPz/+PH88PD48PB4fHh+Pl8f7Y4g/L4f7f4ghPn5+SOTp5Ofkp5OvT/w+/X54vD/++/DwcH//9/p44PfH/++PD5fPz+fnw+fz+fHz8Xz4+Hj48PHw8fHwXvx4efHx8vLx5fPDL/Ph4fXh5Xlx8by8eHl5eHny8fLy4+XHxw/h8cPxfnh8uPh4XDh9XN74vPF54/Pm748XFx8fHx8fHx8fHx8vXnx4enm/eX95v/l8Pn++fD5/vny+/H94erq8fHl6ery8vLx5enp5unw4fTid33z4ffhwOn+4fPh+8+v88PP7w+fX6+fT5efP5edP55PP//8vT5efl55PPr5vPn8un7/Pn/f//5/P/+H/9Oft9/fzX/8Ofv5Ofv4O98uLh4+/bZefl5ffZfjw8PZ4f/v7/vD++PP/8vC//+X/v8/f9//f59f/f58X/77w9/Dy8vLw8vDw8PDw8PDwkOfDw8PDw5vnw8PDm5vnw8Ob58PDm+fDw+PN583v//DwcOHj48XF48Pjw8XDlY+Lpx+XT6efT5ffh5++9PLDywshL4e8fPh4eT98fHx4+vDw4XmX5+UvTz79vMtLjy9Pn//fE5/P78nzP/n49PTo4fnp4enhyfOfp88X/+f/8fP89+vzpafn//enp0/PP58enp70pE8vfTzpS58+n//Pl08vT/p08fHz5U9fL08v//ny8fHz8fXy5fHy5fHx8fHx8fHx8ffjy+fjw8fn7/vL5/P58f/n8+f4F5XpE79b/fQ0AAAAASUVORK5CYII=" alt="Logo Hải quan Việt Nam" class="logo">
-                    <div class="unit-info">
-                        <h3>CHI CỤC HẢI QUAN KHU VỰC III</h3>
-                        <p>Đội Thông quan</p>
-                    </div>
-                </div>
                 <div class="title-area">
-                    <h1>DANH BẠ 5 NHÓM XỨ LÝ TỜ KHAI</h1>
-                    <p class="description">Bộ phận Thủ tục Hàng hóa Xuất nhập khẩu — Phân công theo nhóm Chương HS</p>
-                    <div class="effective-date">📅 Hiệu lực: từ ngày 01/6/2026</div>
+                    <h1>DANH BẠ CÁN BỘ CÔNG CHỨC</h1>
+                    <p class="description">Đội Thông quan - Chi cục Hải quan cửa khẩu XYZ</p>
+                    <div class="effective-date">📅 Cập nhật mới nhất từ data.json</div>
                 </div>
             </div>
         </header>
 
+        <!-- KHU VỰC TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('nhap-khau', this)">ĐĂNG KÝ NHẬP KHẨU</button>
+            <button class="tab-btn" onclick="switchTab('kiem-hoa', this)">KIỂM TRA THỰC TẾ (KIỂM HÓA)</button>
+            <button class="tab-btn" onclick="switchTab('xuat-khau', this)">THỦ TỤC XUẤT KHẨU & CHỨC NĂNG</button>
+        </div>
+
         <!-- THẺ THỐNG KÊ -->
         <div class="stats-container">
             <div class="stat-card">
-                <span class="number">60</span>
+                <span class="number" id="stat-total-cbcc">0</span>
                 <span class="label">TỔNG CBCC</span>
             </div>
             <div class="stat-card">
-                <span class="number">5</span>
-                <span class="label">NHÓM XỨ LÝ</span>
+                <span class="number" id="stat-total-groups">0</span>
+                <span class="label">TỔ/NHÓM CÔNG TÁC</span>
             </div>
             <div class="stat-card">
-                <span class="number">01 – 98</span>
-                <span class="label">CHƯƠNG HS</span>
+                <span class="number" id="stat-active-tab">Nhập Khẩu</span>
+                <span class="label">ĐANG HIỂN THỊ</span>
             </div>
         </div>
 
-        <!-- KHU VỰC BẢNG NHÓM 1 -->
-        <main>
-            <div class="group-table-section">
-                <!-- HEADER CỦA NHÓM -->
-                <div class="group-header">
-                    <div class="group-info">
-                        <span class="group-number">01</span>
-                        <div class="group-details">
-                            <span class="group-name">NHÓM 1</span>
-                            <span class="group-hs">Chương 01 – 29</span>
-                            <span class="group-commodity">Động vật sống • Thực phẩm • Sản phẩm khoáng • Hóa chất hữu cơ</span>
-                        </div>
-                    </div>
-                    <div class="group-cbcc-count">
-                        <span class="number">16</span>
-                        <span class="label">CBCC</span>
-                    </div>
-                </div>
-
-                <!-- BẢNG DANH SÁCH NHÂN VIÊN -->
-                <table class="staff-table">
-                    <thead>
-                        <tr>
-                            <th class="stt">STT</th>
-                            <th>HỌ VỀ TÊN</th>
-                            <th>GHI SỐ</th>
-                            <th>NHIỆM VỤ</th>
-                            <th>ĐIỆN THOẠI</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="leader-row">
-                            <td class="stt">1</td>
-                            <td class="name">Bùi Khắc Hải</td>
-                            <td class="ghi-so">56</td>
-                            <td><span class="badge badge-nhom-truong">Nhóm trưởng</span></td>
-                            <td class="dien-thoai">0913.596.946</td>
-                        </tr>
-                        <tr>
-                            <td class="stt">2</td>
-                            <td class="name">Lê Thái Dương</td>
-                            <td class="ghi-so">41</td>
-                            <td><span class="badge badge-tiep-nhan">Tiếp nhận</span></td>
-                            <td class="dien-thoai">0966.662.689</td>
-                        </tr>
-                        <tr>
-                            <td class="stt">3</td>
-                            <td class="name">Nguyễn Thanh Tùng</td>
-                            <td class="ghi-so">42</td>
-                            <td><span class="badge badge-tiep-nhan">Tiếp nhận</span></td>
-                            <td class="dien-thoai">0342.260.386</td>
-                        </tr>
-                        <tr>
-                            <td class="stt">4</td>
-                            <td class="name">Vũ Thị Thanh Hải</td>
-                            <td class="ghi-so">43</td>
-                            <td><span class="badge badge-tiep-nhan">Tiếp nhận</span></td>
-                            <td class="dien-thoai">0987.142.000</td>
-                        </tr>
-                        <tr>
-                            <td class="stt">5</td>
-                            <td class="name">Đỗ Thị Hằng</td>
-                            <td class="ghi-so">43A</td>
-                            <td><span class="badge badge-tiep-nhan">Tiếp nhận</span></td>
-                            <td class="dien-thoai">0986.623.452</td>
-                        </tr>
-                        <tr>
-                            <td class="stt">6</td>
-                            <td class="name">Trần Thị Tuyết Mai</td>
-                            <td class="ghi-so">45</td>
-                            <td><span class="badge badge-tiep-nhan">Tiếp nhận</span></td>
-                            <td class="dien-thoai">0989.929.307</td>
-                        </tr>
-                        <tr>
-                            <td class="stt">7</td>
-                            <td class="name">Dương Quốc Hưng</td>
-                            <td class="ghi-so">46</td>
-                            <td><span class="badge badge-tiep-nhan">Tiếp nhận</span></td>
-                            <td class="dien-thoai">0973.668.338</td>
-                        </tr>
-                        <tr>
-                            <td class="stt">8</td>
-                            <td class="name">Trần Thị Huyền Trang</td>
-                            <td class="ghi-so">47</td>
-                            <td><span class="badge badge-tiep-nhan">Tiếp nhận</span></td>
-                            <td class="dien-thoai">0912.977.392</td>
-                        </tr>
-                        <tr>
-                            <td class="stt">9</td>
-                            <td class="name">Phạm Huy Khương</td>
-                            <td class="ghi-so">48</td>
-                            <td><span class="badge badge-tiep-nhan">Tiếp nhận</span></td>
-                            <td class="dien-thoai">0979.483.236</td>
-                        </tr>
-                        <tr>
-                            <td class="stt">10</td>
-                            <td class="name">Đỗ Trường Sơn</td>
-                            <td class="ghi-so">48A</td>
-                            <td><span class="badge badge-cntt">CNTT</span></td>
-                            <td class="dien-thoai">0906.179.039</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <!-- CONTAINER CHỨA CÁC BẢNG -->
+        <main id="main-content" class="group-container">
+            <!-- Dữ liệu sẽ được render vào đây bằng JS -->
         </main>
     </div>
+
+    <script>
+        let globalData = null;
+        let currentTab = 'nhap-khau';
+
+        // Fetch dữ liệu từ file data.json
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                globalData = data;
+                renderData();
+                updateStats();
+            })
+            .catch(error => console.error('Lỗi khi tải dữ liệu:', error));
+
+        // Hàm chuyển tab
+        function switchTab(tabId, btnElement) {
+            currentTab = tabId;
+            
+            // Xóa class active của tất cả các nút
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // Thêm class active cho nút được click
+            btnElement.classList.add('active');
+
+            // Cập nhật tên tab đang hiển thị ở phần thống kê
+            const tabNames = {
+                'nhap-khau': 'Nhập Khẩu',
+                'kiem-hoa': 'Kiểm Hóa',
+                'xuat-khau': 'Xuất Khẩu / Chức Năng'
+            };
+            document.getElementById('stat-active-tab').textContent = tabNames[tabId];
+
+            renderData();
+            
+            // Nếu ô tìm kiếm đang có chữ, tự động tìm kiếm lại trong tab mới
+            const searchTerm = document.getElementById('search-input').value.trim();
+            if (searchTerm) {
+                searchTable(searchTerm);
+            }
+        }
+
+        // Hàm render giao diện dựa trên tab hiện tại
+        function renderData() {
+            if (!globalData) return;
+            
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = ''; // Xóa nội dung cũ
+            
+            let groupsToRender = [];
+            let themeClass = '';
+            let isKiemHoa = false;
+
+            if (currentTab === 'nhap-khau') {
+                groupsToRender = globalData.hangHoaNhapKhau.danhSachToNghiepVu;
+                themeClass = '';
+            } else if (currentTab === 'kiem-hoa') {
+                groupsToRender = globalData.kiemTraThucTeHangHoa.danhSachNhom;
+                themeClass = 'kiem-hoa';
+                isKiemHoa = true;
+            } else if (currentTab === 'xuat-khau') {
+                groupsToRender = globalData.thuTucHangHoaXuatKhauVaChucNang.danhSachToNghiepVu;
+                themeClass = 'xuat-khau';
+            }
+
+            groupsToRender.forEach((group, index) => {
+                // Render header của nhóm
+                let groupNumber = group.tenNhom.replace(/[^0-9]/g, '');
+                if (!groupNumber) groupNumber = index + 1;
+                
+                const cbccCount = group.danhSachNhanVien ? group.danhSachNhanVien.length : (group.nhanVien ? group.nhanVien.length : 0);
+
+                const groupSection = document.createElement('div');
+                groupSection.className = `group-table-section search-target-group`;
+                
+                let html = `
+                    <div class="group-header ${themeClass}">
+                        <div class="group-info">
+                            <span class="group-number">${groupNumber}</span>
+                            <div class="group-details">
+                                <span class="group-name">${group.tenNhom}</span>
+                                <span class="group-hs">${group.chuongHs || group.tenBoPhan || ''}</span>
+                                <span class="group-commodity">${group.moTa || ''}</span>
+                            </div>
+                        </div>
+                        <div class="group-cbcc-count">
+                            <span class="number">${cbccCount}</span>
+                            <span class="label">CBCC</span>
+                        </div>
+                    </div>
+                    <table class="staff-table ${themeClass ? themeClass + '-table' : ''}">
+                        <thead>
+                            <tr>
+                                <th class="stt">STT</th>
+                                <th>HỌ VÀ TÊN</th>
+                                ${isKiemHoa ? '' : '<th>MÃ BÀN / QUẦY</th>'}
+                                <th>NHIỆM VỤ / CHỨC DANH</th>
+                                <th>ĐIỆN THOẠI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                // Render danh sách nhân viên
+                const staffList = group.danhSachNhanVien || group.nhanVien || [];
+                staffList.forEach(staff => {
+                    const vaiTro = staff.vaiTro || staff.phanCong || 'Thành viên';
+                    let badgeClass = 'badge-thanh-vien';
+                    if (vaiTro.toLowerCase().includes('trưởng') || vaiTro.toLowerCase().includes('chỉ huy')) {
+                        badgeClass = 'badge-truong';
+                    } else if (vaiTro.toLowerCase().includes('cntt')) {
+                        badgeClass = 'badge-cntt';
+                    }
+                    
+                    const maBan = staff.maBan || staff.soQuay || (isKiemHoa ? '' : '-');
+
+                    html += `
+                        <tr class="search-target-row">
+                            <td class="stt">${staff.stt || ''}</td>
+                            <td class="name">${staff.hoTen}</td>
+                            ${isKiemHoa ? '' : `<td class="ghi-so">${maBan}</td>`}
+                            <td><span class="badge ${badgeClass}">${vaiTro}</span></td>
+                            <td class="dien-thoai">${staff.sdt || staff.dienThoai || staff.soDienThoai || ''}</td>
+                        </tr>
+                    `;
+                });
+
+                html += `
+                        </tbody>
+                    </table>
+                `;
+                
+                groupSection.innerHTML = html;
+                mainContent.appendChild(groupSection);
+            });
+            
+            updateStats();
+        }
+
+        // Tính toán thống kê
+        function updateStats() {
+            if (!globalData) return;
+            
+            let totalCBCC = 0;
+            let totalGroups = 0;
+            
+            // Tính tổng tất cả mọi nơi
+            const arr1 = globalData.hangHoaNhapKhau.danhSachToNghiepVu;
+            const arr2 = globalData.kiemTraThucTeHangHoa.danhSachNhom;
+            const arr3 = globalData.thuTucHangHoaXuatKhauVaChucNang.danhSachToNghiepVu;
+            
+            totalGroups = arr1.length + arr2.length + arr3.length;
+            
+            [...arr1, ...arr2, ...arr3].forEach(group => {
+                const list = group.danhSachNhanVien || group.nhanVien || [];
+                totalCBCC += list.length;
+            });
+            
+            document.getElementById('stat-total-cbcc').textContent = totalCBCC;
+            document.getElementById('stat-total-groups').textContent = totalGroups;
+        }
+
+        // Tìm kiếm
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            searchTable(e.target.value);
+        });
+
+        function searchTable(term) {
+            const searchTerm = term.toLowerCase().trim();
+            const groups = document.querySelectorAll('.search-target-group');
+            
+            groups.forEach(group => {
+                let hasVisibleRow = false;
+                const rows = group.querySelectorAll('.search-target-row');
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.classList.remove('hidden');
+                        hasVisibleRow = true;
+                    } else {
+                        row.classList.add('hidden');
+                    }
+                });
+                
+                // Ẩn cả nhóm nếu không có dòng nào match
+                if (hasVisibleRow) {
+                    group.classList.remove('hidden');
+                } else {
+                    group.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
