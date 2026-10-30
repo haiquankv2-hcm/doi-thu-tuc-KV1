@@ -1,0 +1,654 @@
+{
+  "hangHoaNhapKhau": {
+    "danhSachToNghiepVu": [
+      {
+        "tenNhom": "Nhóm 1",
+        "chuongHs": "Chương 01 - 24",
+        "moTa": "Động vật, Thực phẩm, Nông sản",
+        "danhSachNhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Nguyễn Nam Khánh",
+            "maBan": "08",
+            "vaiTro": "Tổ trưởng",
+            "sdt": "0972.282.686"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Hồ Thụy Mỹ Linh",
+            "maBan": "05",
+            "vaiTro": "Thành viên",
+            "sdt": "0908.231.385"
+          },
+          {
+            "stt": 3,
+            "hoTen": "Hoàng Việt Anh",
+            "maBan": "30",
+            "vaiTro": "Thành viên",
+            "sdt": "0364.382.838"
+          },
+          {
+            "stt": 4,
+            "hoTen": "Nguyễn Thị Hạnh",
+            "maBan": "43",
+            "vaiTro": "Thành viên",
+            "sdt": "0902.630.379"
+          },
+          {
+            "stt": 5,
+            "hoTen": "Vũ Hiền An",
+            "maBan": "44",
+            "vaiTro": "Thành viên",
+            "sdt": "0919.035.576"
+          },
+          {
+            "stt": 6,
+            "hoTen": "Trịnh Thanh Bình",
+            "maBan": "25",
+            "vaiTro": "Thành viên",
+            "sdt": "0902.812.823"
+          },
+          {
+            "stt": 7,
+            "hoTen": "Nguyễn Thị Thu Huyền",
+            "maBan": "39",
+            "vaiTro": "Thành viên",
+            "sdt": "0988.519.052"
+          }
+        ]
+      },
+      {
+        "tenNhom": "Nhóm 2",
+        "chuongHs": "Chương 25 - 40",
+        "moTa": "Khoáng sản, Hóa chất, Plastic",
+        "danhSachNhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Phan Thế Anh",
+            "maBan": "11",
+            "vaiTro": "Tổ trưởng",
+            "sdt": "0913.827.575"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Lê Thanh Thủy",
+            "maBan": "02",
+            "vaiTro": "Thành viên",
+            "sdt": "0907.092.222"
+          },
+          {
+            "stt": 3,
+            "hoTen": "Đinh Thị Cẩm Tú",
+            "maBan": "03",
+            "vaiTro": "Thành viên",
+            "sdt": "0918.882.079"
+          },
+          {
+            "stt": 4,
+            "hoTen": "Trần Thị Mỹ Tâm",
+            "maBan": "07",
+            "vaiTro": "Thành viên",
+            "sdt": "0779.079.888"
+          },
+          {
+            "stt": 5,
+            "hoTen": "Phạm Thị Ngọc",
+            "maBan": "14",
+            "vaiTro": "Thành viên",
+            "sdt": "0903.742.668"
+          },
+          {
+            "stt": 6,
+            "hoTen": "Trần Thị Lệ Thu",
+            "maBan": "18",
+            "vaiTro": "Thành viên",
+            "sdt": "0949.499.568"
+          },
+          {
+            "stt": 7,
+            "hoTen": "Nguyễn Toàn Định",
+            "maBan": "15",
+            "vaiTro": "Thành viên",
+            "sdt": "0907.065.616"
+          },
+          {
+            "stt": 8,
+            "hoTen": "Nguyễn Đức Cường",
+            "maBan": "22",
+            "vaiTro": "Thành viên",
+            "sdt": "0947.501.183"
+          },
+          {
+            "stt": 9,
+            "hoTen": "Phan Thị Yến",
+            "maBan": "26",
+            "vaiTro": "Thành viên",
+            "sdt": "0912.405.566"
+          },
+          {
+            "stt": 10,
+            "hoTen": "Nguyễn Thanh Toàn",
+            "maBan": "28",
+            "vaiTro": "Thành viên",
+            "sdt": "0909.027.129"
+          },
+          {
+            "stt": 11,
+            "hoTen": "Hồ Đức Kỳ",
+            "maBan": "29",
+            "vaiTro": "Thành viên",
+            "sdt": "0931.397.799"
+          },
+          {
+            "stt": 12,
+            "hoTen": "Trần Trung Kiên",
+            "maBan": "31",
+            "vaiTro": "Thành viên",
+            "sdt": "0968.717.339"
+          },
+          {
+            "stt": 13,
+            "hoTen": "Trần Thị Thanh",
+            "maBan": "33",
+            "vaiTro": "Thành viên",
+            "sdt": "0982.606.286"
+          },
+          {
+            "stt": 14,
+            "hoTen": "Tô Hải Yến",
+            "maBan": "36",
+            "vaiTro": "Thành viên",
+            "sdt": "0918.319.685"
+          },
+          {
+            "stt": 15,
+            "hoTen": "Nguyễn Thị Thanh Thủy",
+            "maBan": "37",
+            "vaiTro": "Thành viên",
+            "sdt": "0936.567.811"
+          }
+        ]
+      },
+      {
+        "tenNhom": "Nhóm 3",
+        "chuongHs": "Chương 41-63",
+        "moTa": "Da, Gỗ, Giấy, Dệt may",
+        "danhSachNhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Nguyễn Thị Thủy",
+            "maBan": "03A",
+            "vaiTro": "Tổ trưởng",
+            "sdt": "0903.753.183"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Nguyễn Trọng Sinh",
+            "maBan": "06",
+            "vaiTro": "Thành viên",
+            "sdt": "0988.113.456"
+          },
+          {
+            "stt": 3,
+            "hoTen": "Bùi Thế Trọng",
+            "maBan": "23",
+            "vaiTro": "Thành viên",
+            "sdt": "0904.818.000"
+          },
+          {
+            "stt": 4,
+            "hoTen": "Nguyễn Thị Kim Vân",
+            "maBan": "27",
+            "vaiTro": "Thành viên",
+            "sdt": "0903.757.909"
+          },
+          {
+            "stt": 5,
+            "hoTen": "Nguyễn Đăng Khuê",
+            "maBan": "34",
+            "vaiTro": "Thành viên",
+            "sdt": "0918.326.262"
+          },
+          {
+            "stt": 6,
+            "hoTen": "Trần Gia Khánh",
+            "maBan": "43A",
+            "vaiTro": "Thành viên",
+            "sdt": "0904.579.996"
+          }
+        ]
+      },
+      {
+        "tenNhom": "Nhóm 4",
+        "chuongHs": "Chương 64 - 83",
+        "moTa": "Đá quý, Sắt thép, Kim Loại",
+        "danhSachNhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Trần Thị Mỹ Linh",
+            "maBan": "17",
+            "vaiTro": "Tổ trưởng",
+            "sdt": "0945.543.661"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Phan Lâm Phú",
+            "maBan": "01",
+            "vaiTro": "Thành viên",
+            "sdt": "0906.579.888"
+          },
+          {
+            "stt": 3,
+            "hoTen": "Bùi Thế Việt",
+            "maBan": "16",
+            "vaiTro": "Thành viên",
+            "sdt": "0932.351.279"
+          },
+          {
+            "stt": 4,
+            "hoTen": "Đới Thị Hương Mai",
+            "maBan": "24",
+            "vaiTro": "Thành viên",
+            "sdt": "0989.314.404"
+          },
+          {
+            "stt": 5,
+            "hoTen": "Nguyễn Đăng Hưng",
+            "maBan": "32",
+            "vaiTro": "Thành viên",
+            "sdt": "0387.925.046"
+          },
+          {
+            "stt": 6,
+            "hoTen": "Nguyễn Thanh Cần",
+            "maBan": "41",
+            "vaiTro": "Thành viên",
+            "sdt": "0903.838.364"
+          },
+          {
+            "stt": 7,
+            "hoTen": "Trần Quốc Việt",
+            "maBan": "42",
+            "vaiTro": "Thành viên",
+            "sdt": "0962.848.989"
+          }
+        ]
+      },
+      {
+        "tenNhom": "Nhóm 5",
+        "chuongHs": "Chương 84 - 97",
+        "moTa": "Máy Móc, Điện Tử, Xe, Quang học",
+        "danhSachNhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Hoàng Ngô Việt Hà",
+            "maBan": "19",
+            "vaiTro": "Tổ trưởng",
+            "sdt": "0919.717.777"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Đàm Xuân Hùng",
+            "maBan": "09",
+            "vaiTro": "Thành viên",
+            "sdt": "0933.244.663"
+          },
+          {
+            "stt": 3,
+            "hoTen": "Nguyễn Văn Quảng",
+            "maBan": "10",
+            "vaiTro": "Thành viên",
+            "sdt": "0934.294.488"
+          },
+          {
+            "stt": 4,
+            "hoTen": "Lê Minh Hoàng",
+            "maBan": "10A",
+            "vaiTro": "Thành viên",
+            "sdt": "0905.091.353"
+          },
+          {
+            "stt": 5,
+            "hoTen": "Trần Thị Thu Hương",
+            "maBan": "14",
+            "vaiTro": "Thành viên",
+            "sdt": "0902.532.972"
+          },
+          {
+            "stt": 6,
+            "hoTen": "Nguyễn Thị Hà Thu",
+            "maBan": "12",
+            "vaiTro": "Thành viên",
+            "sdt": "0832.759.999"
+          },
+          {
+            "stt": 7,
+            "hoTen": "Lương Nhật Linh",
+            "maBan": "21",
+            "vaiTro": "Thành viên",
+            "sdt": "0976.555.888"
+          },
+          {
+            "stt": 8,
+            "hoTen": "Nguyễn Văn Hoàn",
+            "maBan": "35",
+            "vaiTro": "Thành viên",
+            "sdt": "0909.699.565"
+          },
+          {
+            "stt": 9,
+            "hoTen": "Tô Quang Huy",
+            "maBan": "38",
+            "vaiTro": "Thành viên",
+            "sdt": "0919.197.638"
+          },
+          {
+            "stt": 10,
+            "hoTen": "Nguyễn Ngọc Lưu",
+            "maBan": "40",
+            "vaiTro": "Thành viên",
+            "sdt": "0903.977.919"
+          },
+          {
+            "stt": 11,
+            "hoTen": "Phan Văn Hà",
+            "maBan": "45",
+            "vaiTro": "Thành viên",
+            "sdt": "0905.760.706"
+          }
+        ]
+      }
+    ]
+  },
+  "kiemTraThucTeHangHoa": {
+    "danhSachNhom": [
+      {
+        "tenNhom": "Nhóm 1",
+        "chuongHs": "84-97",
+        "moTa": "1. Máy móc thiết bị cơ khí, động cơ, thiết bị điện, linh kiện điện tử\n2. Xe phương tiện giao thông (đường bộ, đường sắt, đường biển)\n3. Dụng cụ thiết bị quang học, đo lường, y tế\n4. Nội thất, bách hóa, đèn, đồ chơi, dụng cụ giải trí, thể thao, văn phòng phẩm",
+        "nhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Nguyễn Thành Nhân",
+            "dienThoai": "0913925858"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Lê Minh Nguyện",
+            "dienThoai": "0932881818"
+          },
+          {
+            "stt": 3,
+            "hoTen": "Hoàng Hải Trung",
+            "dienThoai": "0975976600"
+          },
+          {
+            "stt": 4,
+            "hoTen": "Nguyễn Đức Lợi",
+            "dienThoai": "0971166666"
+          },
+          {
+            "stt": 5,
+            "hoTen": "Lê Hoài Nam",
+            "dienThoai": "0903840318"
+          },
+          {
+            "stt": 6,
+            "hoTen": "Trần Anh Tuấn",
+            "dienThoai": "0919850789"
+          },
+          {
+            "stt": 7,
+            "hoTen": "Nguyễn Quang Vinh",
+            "dienThoai": "0913619696"
+          },
+          {
+            "stt": 8,
+            "hoTen": "Đỗ Sỹ Trung",
+            "dienThoai": "0944455557"
+          }
+        ]
+      },
+      {
+        "tenNhom": "Nhóm 2",
+        "chuongHs": "25-40; 64-83",
+        "moTa": "1. Hóa chất, phế liệu nhựa, dược phẩm, khoáng chất\n2. Phân bón, cao su, sp bằng cao su, giày dép\n3. Đá, thạch cao, xi măng, thiết bị vệ sinh\n4. Sp gốm sứ, thủy tinh, sắt thép, sp kim loại",
+        "nhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Vũ Trường Thụ",
+            "dienThoai": "0982287772"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Nguyễn Xuân Tuấn",
+            "dienThoai": "0903737470"
+          },
+          {
+            "stt": 3,
+            "hoTen": "Hoàng Trung Kiên",
+            "dienThoai": "0939676666"
+          },
+          {
+            "stt": 4,
+            "hoTen": "Trần Minh Tâm",
+            "dienThoai": "0983681686"
+          }
+        ]
+      },
+      {
+        "tenNhom": "Nhóm 3",
+        "chuongHs": "01-24, 41-63",
+        "moTa": "1. Đồ da, vải, sợi, gỗ, giấy\n2. Quần áo, hàng dệt may mặc\n3. Thực phẩm chế biến thức ăn, sữa, động vật, thực vật, thức ăn chăn nuôi\n4. Thuốc lá, rượu bia, nước giải khát",
+        "nhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Đỗ Trung Kiên",
+            "dienThoai": "0932327475"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Nguyễn Thanh Hải",
+            "dienThoai": "0908329001"
+          },
+          {
+            "stt": 3,
+            "hoTen": "Nguyễn Trung Hiếu",
+            "dienThoai": "0812096996"
+          },
+          {
+            "stt": 4,
+            "hoTen": "Lê Thị Mỹ Hạnh",
+            "dienThoai": "0918586885"
+          },
+          {
+            "stt": 5,
+            "hoTen": "Nguyễn Quang Nghĩa",
+            "dienThoai": "0338381976"
+          },
+          {
+            "stt": 6,
+            "hoTen": "Bùi Duy Toàn",
+            "dienThoai": "0916893698"
+          }
+        ]
+      },
+      {
+        "tenNhom": "Nhóm 4",
+        "chuongHs": "Kho CFS",
+        "moTa": "Quản lý kho CFS",
+        "nhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Nguyễn Như Thành",
+            "dienThoai": "0903818346"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Lê Văn Hưng",
+            "dienThoai": "0909521236"
+          }
+        ]
+      },
+      {
+        "tenNhom": "Nhóm 5",
+        "chuongHs": "Tạm nhập tái xuất",
+        "moTa": "Hàng hóa tạm nhập tái xuất",
+        "nhanVien": [
+          {
+            "stt": 1,
+            "hoTen": "Hà Thị Ngọc Tú",
+            "dienThoai": "0968385858"
+          },
+          {
+            "stt": 2,
+            "hoTen": "Nguyễn Đình Mạnh",
+            "dienThoai": "0904992323"
+          },
+          {
+            "stt": 3,
+            "hoTen": "Nguyễn Thị Thu Trang",
+            "dienThoai": "0933121189"
+          }
+        ]
+      }
+    ]
+  },
+  "thuTucHangHoaXuatKhauVaChucNang": {
+    "danhSachToNghiepVu": [
+      {
+        "tenBoPhan": "BAN CHỈ HUY ĐỘI",
+        "moTa": "Quản lý và điều hành chung",
+        "danhSachNhanVien": [
+          {
+            "tt": 1,
+            "hoTen": "Bùi Tấn Nam",
+            "phanCong": "Phó Đội trưởng",
+            "dienThoai": "0913919456"
+          }
+        ]
+      },
+      {
+        "tenBoPhan": "BỘ PHẬN ĐĂNG KÝ HỒ SƠ",
+        "moTa": "Kiểm tra hồ sơ hải quan (Bước 2)",
+        "danhSachNhanVien": [
+          {
+            "tt": 2,
+            "hoTen": "Huỳnh Thanh Đạm",
+            "phanCong": "Kiểm tra hồ sơ",
+            "dienThoai": "0918891382",
+            "soQuay": "01"
+          },
+          {
+            "tt": 3,
+            "hoTen": "Huỳnh Thoại Tâm Đăng",
+            "phanCong": "Kiểm tra hồ sơ",
+            "dienThoai": "0919443535",
+            "soQuay": "03"
+          },
+          {
+            "tt": 4,
+            "hoTen": "Đỗ Văn Tuấn",
+            "phanCong": "Kiểm tra hồ sơ",
+            "dienThoai": "0962051276",
+            "soQuay": "05"
+          },
+          {
+            "tt": 5,
+            "hoTen": "Trần Thu Hà",
+            "phanCong": "Kiểm tra hồ sơ",
+            "dienThoai": "0933839354",
+            "soQuay": "06"
+          },
+          {
+            "tt": 6,
+            "hoTen": "Trần Thị Phương Lan",
+            "phanCong": "Kiểm tra hồ sơ",
+            "dienThoai": "0989667979",
+            "soQuay": "07"
+          },
+          {
+            "tt": 7,
+            "hoTen": "Nguyễn Thế Định",
+            "phanCong": "Kiểm tra hồ sơ",
+            "dienThoai": "0355365865",
+            "soQuay": "08"
+          },
+          {
+            "tt": 8,
+            "hoTen": "Bùi Thị Tuyết Trinh",
+            "phanCong": "Phó Trưởng Bộ phận Thủ tục HHXK",
+            "dienThoai": "0919888879",
+            "soQuay": "09"
+          },
+          {
+            "tt": 9,
+            "hoTen": "Hoàng Quang Vinh",
+            "phanCong": "Kiểm tra hồ sơ",
+            "dienThoai": "0908449732",
+            "soQuay": "11"
+          }
+        ]
+      },
+      {
+        "tenBoPhan": "BỘ PHẬN THAM VẤN GIÁ, CNTT",
+        "moTa": "Tham vấn giá và Hỗ trợ CNTT",
+        "danhSachNhanVien": [
+          {
+            "tt": 10,
+            "hoTen": "Nguyễn Thị Đào Nguyên",
+            "phanCong": "Tham vấn giá",
+            "dienThoai": "0908403479",
+            "soQuay": "15"
+          },
+          {
+            "tt": 11,
+            "hoTen": "Phạm Ngọc Bảo",
+            "phanCong": "Tham vấn giá",
+            "dienThoai": "0989241111",
+            "soQuay": "16"
+          },
+          {
+            "tt": 12,
+            "hoTen": "Nguyễn Hải Minh",
+            "phanCong": "CNTT",
+            "dienThoai": "0908278275"
+          }
+        ]
+      },
+      {
+        "tenBoPhan": "BỘ PHẬN KIỂM HÓA",
+        "moTa": "Kiểm tra thực tế hàng hóa (Bước 3)",
+        "danhSachNhanVien": [
+          {
+            "tt": 13,
+            "hoTen": "Nguyễn Ngọc Hiếu",
+            "phanCong": "Kiểm tra TTHH",
+            "dienThoai": "0924142142",
+            "soQuay": "10"
+          },
+          {
+            "tt": 14,
+            "hoTen": "Trần Đức Cường",
+            "phanCong": "Kiểm tra TTHH",
+            "dienThoai": "0973300747",
+            "soQuay": "12"
+          },
+          {
+            "tt": 15,
+            "hoTen": "Bùi Chiến Thắng",
+            "phanCong": "Kiểm tra TTHH",
+            "dienThoai": "0906429999",
+            "soQuay": "13"
+          },
+          {
+            "tt": 16,
+            "hoTen": "Dương Thành Công",
+            "phanCong": "Trưởng Bộ phận Thủ tục HHXK",
+            "dienThoai": "0919323302"
+          }
+        ]
+      }
+    ]
+  }
+}
