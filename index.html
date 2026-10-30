@@ -529,20 +529,7 @@
             let hasDeskCol = containerId !== 'kiem-hoa';
             let titleMaBan = (containerId === 'xuat-khau' ? 'SỐ QUẦY' : 'MÃ BÀN');
 
-            // Bổ sung Lãnh đạo Đội phụ trách và Nhóm trưởng ở tab Kiểm hóa
-            if (containerId === 'kiem-hoa' && !isSearchMode) {
-                html += `<div style="background: rgba(255,255,255,0.7); border-radius: 16px; padding: 15px; margin-bottom: 25px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border: 1px solid rgba(255,255,255,0.9); display: flex; flex-direction: column; gap: 12px;">
-                    <div style="font-weight: bold; color: #e65100; font-size: 16px; border-bottom: 1px solid rgba(230,81,0,0.2); padding-bottom: 8px;">BAN CHỈ HUY & ĐIỀU HÀNH KIỂM HÓA</div>
-                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                        <span class="badge badge-to-pho" style="font-size: 12px; padding: 6px 12px;">★ Lãnh đạo Đội phụ trách</span>
-                        <span style="font-weight: bold; font-size: 15px; color: #1976d2;">Lê Đình Quý - Phó Đội trưởng</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                        <span class="badge badge-nhom-truong" style="font-size: 12px; padding: 6px 12px;">⭐ Nhóm trưởng</span>
-                        <span style="font-weight: bold; font-size: 15px; color: #1976d2;">Nguyễn Quang Vinh</span>
-                    </div>
-                </div>`;
-            }
+
 
             dataArray.forEach((group, index) => {
                 let staffList = group.danhSachNhanVien || group.nhanVien || [];
