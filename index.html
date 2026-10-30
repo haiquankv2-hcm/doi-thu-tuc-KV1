@@ -311,8 +311,8 @@
         <div class="tab-wrapper" id="tab-wrapper">
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="openTab(event, 'nhap-khau')">Nhập khẩu</button>
-                <button class="tab-btn" onclick="openTab(event, 'xuat-khau')">Xuất khẩu</button>
-                <button class="tab-btn" onclick="openTab(event, 'ho-tro')">Tổ tư vấn</button>
+                <button class="tab-btn" onclick="openTab(event, 'kiem-hoa')">Kiểm hóa</button>
+                <button class="tab-btn" onclick="openTab(event, 'xuat-khau')">Xuất khẩu & Khác</button>
             </div>
         </div>
 
@@ -320,8 +320,8 @@
         
         <!-- KHUNG HIỂN THỊ DỮ LIỆU CỦA 3 TAB -->
         <div id="nhap-khau" class="tab-content" style="display: none;"></div>
+        <div id="kiem-hoa" class="tab-content" style="display: none;"></div>
         <div id="xuat-khau" class="tab-content" style="display: none;"></div>
-        <div id="ho-tro" class="tab-content" style="display: none;"></div>
 
         <!-- FOOTER -->
         <footer>
@@ -352,7 +352,7 @@
 
     <script>
         const THEME_COLORS = ['#1976d2', '#2e7d32', '#ef6c00', '#6a1b9a', '#00838f'];
-        let globalData = { nhapKhau: [], xuatKhau: [], hoTro: [] }; 
+        let globalData = { hangHoaNhapKhau: {}, kiemTraThucTeHangHoa: {}, thuTucHangHoaXuatKhauVaChucNang: {} }; 
 
         function openTab(evt, tabId) {
             var tabcontent = document.getElementsByClassName("tab-content");
@@ -364,7 +364,7 @@
         }
 
         function removeAccents(str) {
-            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+            return str.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
         }
 
         // --- LOGIC TÌM KIẾM ĐÃ NÂNG CẤP (GỘP TAB KHI TÌM) ---
@@ -377,9 +377,9 @@
                 document.getElementById('tab-wrapper').style.display = 'flex'; // Hiện lại nút chọn tab
                 
                 // Trả lại dữ liệu gốc cho các tab
-                renderData(globalData.nhapKhau, 'nhap-khau');
-                renderData(globalData.xuatKhau, 'xuat-khau');
-                renderData(globalData.hoTro, 'ho-tro');
+                renderData(globalData.hangHoaNhapKhau.danhSachToNghiepVu || [], 'nhap-khau');
+                renderData(globalData.kiemTraThucTeHangHoa.danhSachNhom || [], 'kiem-hoa');
+                renderData(globalData.thuTucHangHoaXuatKhauVaChucNang.danhSachToNghiepVu || [], 'xuat-khau');
                 
                 // Mở lại tab đang được chọn
                 let activeBtn = document.querySelector('.tab-btn.active');
@@ -390,8 +390,8 @@
             // NẾU CÓ TỪ KHÓA: Ẩn thanh Tab đi, ép hiện cả 3 Div kết quả cùng lúc
             document.getElementById('tab-wrapper').style.display = 'none';
             document.getElementById('nhap-khau').style.display = 'block';
+            document.getElementById('kiem-hoa').style.display = 'block';
             document.getElementById('xuat-khau').style.display = 'block';
-            document.getElementById('ho-tro').style.display = 'block';
 
             function filterGroup(dataArray) {
                 let result = [];
@@ -399,8 +399,8 @@
                 
                 dataArray.forEach(group => {
                     let isGroupMatch = false;
-                    let chuongStr = removeAccents((group.chuongHs || "").toLowerCase());
-                    let nameStr = removeAccents((group.tenTo || "").toLowerCase());
+                    let chuongStr = removeAccents((group.chuongHs || group.tenBoPhan || "").toLowerCase());
+                    let nameStr = removeAccents((group.tenNhom || group.tenTo || "").toLowerCase());
                     let descStr = removeAccents((group.moTa || "").toLowerCase());
                     let isOnlyDigits = /^\d+$/.test(kwClean);
 
@@ -409,8 +409,8 @@
                         if (kwClean.includes(" ")) {
                             isGroupMatch = groupText.includes(kwClean);
                         } else {
-                            let regex = new RegExp(`\\b${kwClean}\\b`);
-                            if (regex.test(groupText) || kwClean === "chuong" || kwClean === "to") {
+                            let regex = new RegExp(`\b${kwClean}\b`);
+                            if (regex.test(groupText) || kwClean === "chuong" || kwClean === "to" || kwClean === "nhom") {
                                 isGroupMatch = true;
                             }
                         }
@@ -438,15 +438,17 @@
                         }
                     }
 
+                    let staffList = group.danhSachNhanVien || group.nhanVien || [];
+
                     if (isGroupMatch) {
                         result.push(group);
                     } else {
-                        let matchedStaff = group.nhanVien.filter(nv => {
+                        let matchedStaff = staffList.filter(nv => {
                             let staffNameFull = removeAccents((nv.hoTen || "").toLowerCase()).trim();
-                            let staffPhone = removeAccents((nv.dienThoai || "").toLowerCase());
+                            let staffPhone = removeAccents((nv.sdt || nv.dienThoai || "").toLowerCase());
                             
                             let nameParts = staffNameFull.split(/\s+/);
-                            let tenChinh = nameParts[nameParts.length - 1]; 
+                            let tenChinh = nameParts[nameParts.length - 1] || ""; 
                             
                             let nameMatch = false;
                             if (kwClean.includes(" ")) {
@@ -462,15 +464,22 @@
                                 phoneMatch = staffPhone.includes(kwClean);
                             }
                             
-                            let roleMatch = removeAccents((nv.vaiTro || "").toLowerCase()).includes(kwClean);
-                            let deskMatch = removeAccents((nv.maBan || "").toLowerCase()).includes(kwClean);
+                            let roleStr = removeAccents((nv.vaiTro || nv.phanCong || "").toLowerCase());
+                            let roleMatch = roleStr.includes(kwClean);
+                            
+                            let deskStr = removeAccents((nv.maBan || nv.soQuay || "").toLowerCase());
+                            let deskMatch = deskStr.includes(kwClean);
 
                             return nameMatch || phoneMatch || roleMatch || deskMatch;
                         });
 
                         if (matchedStaff.length > 0) {
                             let newGroup = Object.assign({}, group);
-                            newGroup.nhanVien = matchedStaff;
+                            if(newGroup.danhSachNhanVien) {
+                                newGroup.danhSachNhanVien = matchedStaff;
+                            } else {
+                                newGroup.nhanVien = matchedStaff;
+                            }
                             result.push(newGroup);
                         }
                     }
@@ -478,22 +487,20 @@
                 return result;
             }
 
-            let filteredNhapKhau = filterGroup(globalData.nhapKhau);
-            let filteredXuatKhau = filterGroup(globalData.xuatKhau);
-            let filteredHoTro = filterGroup(globalData.hoTro);
+            let filteredNhapKhau = filterGroup(globalData.hangHoaNhapKhau.danhSachToNghiepVu || []);
+            let filteredKiemHoa = filterGroup(globalData.kiemTraThucTeHangHoa.danhSachNhom || []);
+            let filteredXuatKhau = filterGroup(globalData.thuTucHangHoaXuatKhauVaChucNang.danhSachToNghiepVu || []);
 
-            let totalResults = filteredNhapKhau.length + filteredXuatKhau.length + filteredHoTro.length;
+            let totalResults = filteredNhapKhau.length + filteredKiemHoa.length + filteredXuatKhau.length;
 
             if (totalResults === 0) {
-                // Nếu tìm khắp nơi mà không ra, chỉ hiển thị thông báo 1 lần ở div đầu tiên
                 document.getElementById('nhap-khau').innerHTML = `<div style="text-align: center; padding: 40px; color: #666;"><span style="font-size: 30px;">🔍</span><br><br>Không tìm thấy kết quả nào phù hợp.</div>`;
+                document.getElementById('kiem-hoa').innerHTML = "";
                 document.getElementById('xuat-khau').innerHTML = "";
-                document.getElementById('ho-tro').innerHTML = "";
             } else {
-                // Gọi renderData và truyền thêm Nhãn dán phân hệ (Badge) để người dùng phân biệt
                 renderData(filteredNhapKhau, 'nhap-khau', true, "NHẬP KHẨU");
-                renderData(filteredXuatKhau, 'xuat-khau', true, "XUẤT KHẨU");
-                renderData(filteredHoTro, 'ho-tro', true, "Tổ tư vấn");
+                renderData(filteredKiemHoa, 'kiem-hoa', true, "KIỂM HÓA");
+                renderData(filteredXuatKhau, 'xuat-khau', true, "XUẤT KHẨU & CHỨC NĂNG");
             }
         });
 
@@ -513,13 +520,20 @@
                 return;
             }
 
-            let titleMaBan = (containerId === 'ho-tro') ? 'BỘ PHẬN' : 'MÃ BÀN';
+            let titleMaBan = (containerId === 'kiem-hoa') ? 'SỐ QUẦY' : (containerId === 'xuat-khau' ? 'SỐ QUẦY/BÀN' : 'MÃ BÀN');
 
             dataArray.forEach((group, index) => {
-                let tongCBCC = group.nhanVien.length;
+                let staffList = group.danhSachNhanVien || group.nhanVien || [];
+                let tongCBCC = staffList.length;
                 let bgColor = THEME_COLORS[index % THEME_COLORS.length];
-                let match = group.tenTo.match(/\d+/);
-                let soTo = match ? match[0].padStart(2, '0') : "01";
+                
+                let groupName = group.tenNhom || group.tenTo || group.tenBoPhan || "";
+                let match = groupName.match(/\d+/);
+                let soTo = match ? match[0].padStart(2, '0') : "0" + (index+1);
+                
+                if(containerId === 'xuat-khau') {
+                    soTo = "📌";
+                }
 
                 // Nếu đang tìm kiếm, hiển thị thêm 1 cái Tag màu vàng bên cạnh tên Tổ
                 let catBadge = isSearchMode ? `<span style="background: #ffeb3b; color: #e65100; padding: 2px 8px; border-radius: 8px; font-size: 10px; font-weight: 900; box-shadow: 0 2px 4px rgba(0,0,0,0.15); letter-spacing: 0.5px; border: 1px solid #fbc02d; margin-left: 5px;">📍 ${categoryName}</span>` : '';
@@ -530,10 +544,10 @@
                             <div class="theme-group-number">${soTo}</div>
                             <div class="theme-group-details">
                                 <div class="theme-group-name">
-                                    ${group.tenTo.toUpperCase()} ${catBadge}
+                                    ${groupName.toUpperCase()} ${catBadge}
                                 </div>
-                                <div class="theme-group-hs">${group.chuongHs}</div>
-                                <div class="theme-group-commodity">${group.moTa}</div>
+                                <div class="theme-group-hs">${group.chuongHs || ""}</div>
+                                <div class="theme-group-commodity">${group.moTa || ""}</div>
                             </div>
                         </div>
                         <div class="theme-cbcc-count">
@@ -555,49 +569,56 @@
                             </thead>
                             <tbody>`;
                 
-                group.nhanVien.forEach(nv => {
+                staffList.forEach((nv, idx) => {
+                    let roleString = nv.vaiTro || nv.phanCong || "Thành viên";
                     let badgeClass = 'badge-tiep-nhan';
-                    let isTruong = nv.vaiTro.toLowerCase().includes('trưởng');
-                    let isPho = nv.vaiTro.toLowerCase().includes('phó');
-                    let displayRole = nv.vaiTro; 
+                    
+                    let isTruong = roleString.toLowerCase().includes('trưởng') || roleString.toLowerCase().includes('chỉ huy');
+                    let isPho = roleString.toLowerCase().includes('phó');
+                    let displayRole = roleString; 
                     
                     if (isTruong) {
                         badgeClass = 'badge-nhom-truong'; 
-                        displayRole = `<span style="white-space: nowrap; display: inline-block;">⭐ ${nv.vaiTro}</span>`;
+                        displayRole = `<span style="white-space: nowrap; display: inline-block;">⭐ ${roleString}</span>`;
                     } else if (isPho) {
                         badgeClass = 'badge-to-pho'; 
-                        displayRole = `<span style="white-space: nowrap; display: inline-block;"><span style="color: #0d47a1; font-size: 14px; margin-right: 2px;">★</span>${nv.vaiTro}</span>`;
-                    } else if (nv.vaiTro.toLowerCase().includes('cntt')) {
+                        displayRole = `<span style="white-space: nowrap; display: inline-block;"><span style="color: #0d47a1; font-size: 14px; margin-right: 2px;">★</span>${roleString}</span>`;
+                    } else if (roleString.toLowerCase().includes('cntt')) {
                         badgeClass = 'badge-cntt';
                     }
 
+                    let rawPhone = nv.sdt || nv.dienThoai || "";
                     let phoneHtmlMobile = "";
                     let phoneHtmlDesktop = "";
-                    if (nv.dienThoai && !nv.dienThoai.includes('xxx')) {
-                        let phoneClean = nv.dienThoai.replace(/[^\d]/g, '');
+                    
+                    if (rawPhone && !rawPhone.includes('xxx')) {
+                        let phoneClean = rawPhone.replace(/[^\d]/g, '');
                         let zaloLink = `https://zalo.me/${phoneClean}`;
                         let viberLink = `viber://chat?number=+84${phoneClean.substring(1)}`;
 
                         phoneHtmlMobile = `<div class="phone-mobile" style="margin-top: 4px;">
-                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 12px; font-weight: bold; background: rgba(255, 255, 255, 0.7); padding: 2px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: inline-block;">📞 ${nv.dienThoai}</a>
+                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 12px; font-weight: bold; background: rgba(255, 255, 255, 0.7); padding: 2px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: inline-block;">📞 ${rawPhone}</a>
                         </div>`;
 
                         phoneHtmlDesktop = `<div class="phone-desktop">
-                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 13px; font-weight: bold; display: block; margin-bottom: 5px;">📞 ${nv.dienThoai}</a>
+                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 13px; font-weight: bold; display: block; margin-bottom: 5px;">📞 ${rawPhone}</a>
                             <div style="display: flex; gap: 5px; justify-content: center;">
                                 <a href="${zaloLink}" target="_blank" rel="noopener" class="btn-chat btn-zalo">Zalo</a>
                                 <a href="${viberLink}" target="_blank" rel="noopener" class="btn-chat btn-viber">Viber</a>
                             </div>
                         </div>`;
-                    } else if (nv.dienThoai && nv.dienThoai.includes('xxx')) {
-                         phoneHtmlMobile = `<div class="phone-mobile" style="margin-top: 4px; color: #888; font-size: 12px; font-weight: bold;">📞 ${nv.dienThoai}</div>`;
-                         phoneHtmlDesktop = `<div class="phone-desktop" style="color: #888; font-size: 13px; font-weight: bold;">📞 ${nv.dienThoai}</div>`;
+                    } else if (rawPhone && rawPhone.includes('xxx')) {
+                         phoneHtmlMobile = `<div class="phone-mobile" style="margin-top: 4px; color: #888; font-size: 12px; font-weight: bold;">📞 ${rawPhone}</div>`;
+                         phoneHtmlDesktop = `<div class="phone-desktop" style="color: #888; font-size: 13px; font-weight: bold;">📞 ${rawPhone}</div>`;
                     }
 
-                    let maBanHtml = nv.maBan ? `<span class="desk-box">${nv.maBan}</span>` : '';
+                    let maBan = nv.maBan || nv.soQuay || "-";
+                    let maBanHtml = (maBan !== "-") ? `<span class="desk-box">${maBan}</span>` : '';
+
+                    let sttDisplay = nv.stt || nv.tt || (idx + 1);
 
                     html += `<tr class="${isTruong || isPho ? 'leader-row' : ''}">
-                        <td class="col-stt col-text-blue" style="text-align: center;">${nv.stt}</td>
+                        <td class="col-stt col-text-blue" style="text-align: center;">${sttDisplay}</td>
                         <td class="col-name" style="text-align: left;">
                             <div class="col-text-blue" style="font-size: 14px;">${nv.hoTen}</div>
                             ${phoneHtmlMobile}
@@ -607,7 +628,7 @@
                         <td class="col-phone">${phoneHtmlDesktop}</td>
                     </tr>`;
                 });
-                html += `</tbody></table></div>`;
+                html += `</tbody></table></div></div>`;
             });
             container.innerHTML = html;
         }
@@ -619,9 +640,9 @@
                 globalData = data; 
                 document.getElementById('loading').style.display = 'none';
                 
-                renderData(data.nhapKhau, 'nhap-khau');
-                renderData(data.xuatKhau, 'xuat-khau');
-                renderData(data.hoTro, 'ho-tro');
+                renderData(data.hangHoaNhapKhau.danhSachToNghiepVu || [], 'nhap-khau');
+                renderData(data.kiemTraThucTeHangHoa.danhSachNhom || [], 'kiem-hoa');
+                renderData(data.thuTucHangHoaXuatKhauVaChucNang.danhSachToNghiepVu || [], 'xuat-khau');
                 
                 document.getElementById('nhap-khau').style.display = 'block'; 
             })
