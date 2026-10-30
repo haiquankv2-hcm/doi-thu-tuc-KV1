@@ -179,13 +179,11 @@
         .theme-group-name { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); display: flex; align-items: center; flex-wrap: wrap; gap: 6px;}
         .theme-group-hs { font-size: 16px; font-weight: bold; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);}
         
-        /* CHỈNH SỬA PHẦN NÀY ĐỂ HIỂN THỊ XUỐNG DÒNG */
         .theme-group-commodity { 
             font-size: 12px; 
             font-weight: 500; 
             opacity: 0.95; 
-            white-space: pre-wrap; /* Quan trọng: Cho phép xuống dòng theo ký tự 
- */
+            white-space: pre-wrap;
             line-height: 1.5;
             padding-top: 4px;
         }
@@ -529,8 +527,6 @@
             let hasDeskCol = containerId !== 'kiem-hoa';
             let titleMaBan = (containerId === 'xuat-khau' ? 'SỐ QUẦY' : 'MÃ BÀN');
 
-
-
             dataArray.forEach((group, index) => {
                 let staffList = group.danhSachNhanVien || group.nhanVien || [];
                 let tongCBCC = staffList.length;
@@ -540,13 +536,16 @@
                 let match = groupName.match(/\d+/);
                 let soTo = match ? match[0].padStart(2, '0') : "0" + (index+1);
                 
-                // Thay biểu tượng ghim bằng số Bước đối với mảng Xuất Khẩu
-                if(containerId === 'xuat-khau') {
+                // Đổi biểu tượng cho Phụ lục Ban chỉ huy Kiểm Hóa và các tổ Xuất Khẩu
+                if (containerId === 'kiem-hoa' && groupName.toLowerCase().includes('ban chỉ huy')) {
+                    soTo = "★";
+                }
+                else if(containerId === 'xuat-khau') {
                     let nameLower = groupName.toLowerCase();
                     if (nameLower.includes('đăng ký')) {
-                        soTo = "B2"; // Bước 2
+                        soTo = "B2"; 
                     } else if (nameLower.includes('kiểm hóa')) {
-                        soTo = "B3"; // Bước 3
+                        soTo = "B3"; 
                     } else if (nameLower.includes('tham vấn')) {
                         soTo = "TV";
                     } else if (nameLower.includes('chỉ huy')) {
@@ -567,7 +566,8 @@
                                     ${groupName.toUpperCase()} ${catBadge}
                                 </div>
                                 <div class="theme-group-hs">${group.chuongHs || ""}</div>
-                                <div class="theme-group-commodity">${group.moTa || ""}</div>
+                                ${group.moTa ? `<button class="toggle-btn" onclick="toggleCommodity(this)">Chi tiết hàng hóa <span class="arrow">▼</span></button>
+                                <div class="theme-group-commodity">${group.moTa}</div>` : ''}
                             </div>
                         </div>
                         <div class="theme-cbcc-count">
@@ -611,7 +611,7 @@
                     let phoneHtmlMobile = "";
                     let phoneHtmlDesktop = "";
                     
-                    if (rawPhone && !rawPhone.includes('xxx')) {
+                    if (rawPhone && !rawPhone.includes('xxx') && rawPhone !== "-") {
                         let phoneClean = rawPhone.replace(/[^\d]/g, '');
                         let zaloLink = `https://zalo.me/${phoneClean}`;
                         let viberLink = `viber://chat?number=+84${phoneClean.substring(1)}`;
@@ -627,9 +627,9 @@
                                 <a href="${viberLink}" target="_blank" rel="noopener" class="btn-chat btn-viber">Viber</a>
                             </div>
                         </div>`;
-                    } else if (rawPhone && rawPhone.includes('xxx')) {
-                         phoneHtmlMobile = `<div class="phone-mobile" style="margin-top: 4px; color: #888; font-size: 12px; font-weight: bold;">📞 ${rawPhone}</div>`;
-                         phoneHtmlDesktop = `<div class="phone-desktop" style="color: #888; font-size: 13px; font-weight: bold;">📞 ${rawPhone}</div>`;
+                    } else if (rawPhone) {
+                         phoneHtmlMobile = `<div class="phone-mobile" style="margin-top: 4px; color: #888; font-size: 12px; font-weight: bold;">${rawPhone != "-" ? "📞 " + rawPhone : "-"}</div>`;
+                         phoneHtmlDesktop = `<div class="phone-desktop" style="color: #888; font-size: 13px; font-weight: bold;">${rawPhone != "-" ? "📞 " + rawPhone : "-"}</div>`;
                     }
 
                     let maBanHtml = '';
@@ -673,6 +673,16 @@
             .catch(err => {
                 document.getElementById('loading').innerHTML = "❌ Không tìm thấy dữ liệu. Vui lòng kiểm tra lại file data.json.";
             });
+            function toggleCommodity(btn) {
+            btn.classList.toggle('open');
+            let content = btn.nextElementSibling;
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+            } else {
+                content.classList.add('show');
+            }
+        }
+
     </script>
 </body>
 </html>
