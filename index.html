@@ -178,7 +178,17 @@
         .theme-group-details { display: flex; flex-direction: column; overflow: hidden; }
         .theme-group-name { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); display: flex; align-items: center; flex-wrap: wrap; gap: 6px;}
         .theme-group-hs { font-size: 16px; font-weight: bold; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);}
-        .theme-group-commodity { font-size: 12px; font-weight: 500; opacity: 0.95; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        /* CHỈNH SỬA PHẦN NÀY ĐỂ HIỂN THỊ XUỐNG DÒNG */
+        .theme-group-commodity { 
+            font-size: 12px; 
+            font-weight: 500; 
+            opacity: 0.95; 
+            white-space: pre-wrap; /* Quan trọng: Cho phép xuống dòng theo ký tự 
+ */
+            line-height: 1.5;
+            padding-top: 4px;
+        }
         
         /* SỐ LƯỢNG CBCC */
         .theme-cbcc-count { background-color: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 10px; padding: 6px 12px; text-align: center; min-width: 50px; flex-shrink: 0; backdrop-filter: blur(4px); }
@@ -312,7 +322,7 @@
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="openTab(event, 'nhap-khau')">Nhập khẩu</button>
                 <button class="tab-btn" onclick="openTab(event, 'kiem-hoa')">Kiểm hóa</button>
-                <button class="tab-btn" onclick="openTab(event, 'xuat-khau')">Xuất khẩu & Khác</button>
+                <button class="tab-btn" onclick="openTab(event, 'xuat-khau')">Xuất khẩu</button>
             </div>
         </div>
 
@@ -367,27 +377,22 @@
             return str.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
         }
 
-        // --- LOGIC TÌM KIẾM ĐÃ NÂNG CẤP (GỘP TAB KHI TÌM) ---
+        // --- LOGIC TÌM KIẾM ĐÃ NÂNG CẤP ---
         document.getElementById('search-input').addEventListener('input', function(e) {
             let keyword = e.target.value.trim();
             let kwClean = removeAccents(keyword.toLowerCase()).replace(/\s+/g, ' ');
             
-            // NẾU TỪ KHÓA TRỐNG: Khôi phục lại giao diện 3 tab riêng biệt như bình thường
             if (!kwClean) {
-                document.getElementById('tab-wrapper').style.display = 'flex'; // Hiện lại nút chọn tab
-                
-                // Trả lại dữ liệu gốc cho các tab
+                document.getElementById('tab-wrapper').style.display = 'flex'; 
                 renderData(globalData.hangHoaNhapKhau.danhSachToNghiepVu || [], 'nhap-khau');
                 renderData(globalData.kiemTraThucTeHangHoa.danhSachNhom || [], 'kiem-hoa');
                 renderData(globalData.thuTucHangHoaXuatKhauVaChucNang.danhSachToNghiepVu || [], 'xuat-khau');
                 
-                // Mở lại tab đang được chọn
                 let activeBtn = document.querySelector('.tab-btn.active');
                 if(activeBtn) activeBtn.click();
                 return;
             }
 
-            // NẾU CÓ TỪ KHÓA: Ẩn thanh Tab đi, ép hiện cả 3 Div kết quả cùng lúc
             document.getElementById('tab-wrapper').style.display = 'none';
             document.getElementById('nhap-khau').style.display = 'block';
             document.getElementById('kiem-hoa').style.display = 'block';
@@ -409,7 +414,7 @@
                         if (kwClean.includes(" ")) {
                             isGroupMatch = groupText.includes(kwClean);
                         } else {
-                            let regex = new RegExp(`\b${kwClean}\b`);
+                            let regex = new RegExp(` ${kwClean} `);
                             if (regex.test(groupText) || kwClean === "chuong" || kwClean === "to" || kwClean === "nhom") {
                                 isGroupMatch = true;
                             }
@@ -500,18 +505,18 @@
             } else {
                 renderData(filteredNhapKhau, 'nhap-khau', true, "NHẬP KHẨU");
                 renderData(filteredKiemHoa, 'kiem-hoa', true, "KIỂM HÓA");
-                renderData(filteredXuatKhau, 'xuat-khau', true, "XUẤT KHẨU & CHỨC NĂNG");
+                renderData(filteredXuatKhau, 'xuat-khau', true, "XUẤT KHẨU");
             }
         });
 
-        // HÀM VẼ GIAO DIỆN BẢNG (Có thêm tham số isSearchMode & categoryName)
+        // HÀM VẼ GIAO DIỆN BẢNG
         function renderData(dataArray, containerId, isSearchMode = false, categoryName = "") {
             let container = document.getElementById(containerId);
             let html = "";
             
             if(!dataArray || dataArray.length === 0) {
                 if (isSearchMode) {
-                    container.innerHTML = ""; // Đang tìm kiếm mà tab này trống thì làm sạch HTML, không báo lỗi
+                    container.innerHTML = ""; 
                 } else {
                     container.innerHTML = `<div style="text-align: center; padding: 40px; color: #666;">
                         <span style="font-size: 30px;">🔍</span><br><br>Đang cập nhật dữ liệu...
@@ -520,7 +525,24 @@
                 return;
             }
 
-            let titleMaBan = (containerId === 'kiem-hoa') ? 'SỐ QUẦY' : (containerId === 'xuat-khau' ? 'SỐ QUẦY/BÀN' : 'MÃ BÀN');
+            // Xử lý cờ ẩn hiện cột Mã bàn/Số quầy (Ẩn đi nếu là tab Kiểm hóa)
+            let hasDeskCol = containerId !== 'kiem-hoa';
+            let titleMaBan = (containerId === 'xuat-khau' ? 'SỐ QUẦY' : 'MÃ BÀN');
+
+            // Bổ sung Lãnh đạo Đội phụ trách và Nhóm trưởng ở tab Kiểm hóa
+            if (containerId === 'kiem-hoa' && !isSearchMode) {
+                html += `<div style="background: rgba(255,255,255,0.7); border-radius: 16px; padding: 15px; margin-bottom: 25px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); border: 1px solid rgba(255,255,255,0.9); display: flex; flex-direction: column; gap: 12px;">
+                    <div style="font-weight: bold; color: #e65100; font-size: 16px; border-bottom: 1px solid rgba(230,81,0,0.2); padding-bottom: 8px;">BAN CHỈ HUY & ĐIỀU HÀNH KIỂM HÓA</div>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <span class="badge badge-to-pho" style="font-size: 12px; padding: 6px 12px;">★ Lãnh đạo Đội phụ trách</span>
+                        <span style="font-weight: bold; font-size: 15px; color: #1976d2;">Lê Đình Quý - Phó Đội trưởng</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <span class="badge badge-nhom-truong" style="font-size: 12px; padding: 6px 12px;">⭐ Nhóm trưởng</span>
+                        <span style="font-weight: bold; font-size: 15px; color: #1976d2;">Nguyễn Quang Vinh</span>
+                    </div>
+                </div>`;
+            }
 
             dataArray.forEach((group, index) => {
                 let staffList = group.danhSachNhanVien || group.nhanVien || [];
@@ -531,11 +553,22 @@
                 let match = groupName.match(/\d+/);
                 let soTo = match ? match[0].padStart(2, '0') : "0" + (index+1);
                 
+                // Thay biểu tượng ghim bằng số Bước đối với mảng Xuất Khẩu
                 if(containerId === 'xuat-khau') {
-                    soTo = "📌";
+                    let nameLower = groupName.toLowerCase();
+                    if (nameLower.includes('đăng ký')) {
+                        soTo = "B2"; // Bước 2
+                    } else if (nameLower.includes('kiểm hóa')) {
+                        soTo = "B3"; // Bước 3
+                    } else if (nameLower.includes('tham vấn')) {
+                        soTo = "TV";
+                    } else if (nameLower.includes('chỉ huy')) {
+                        soTo = "CH";
+                    } else {
+                        soTo = "XK";
+                    }
                 }
 
-                // Nếu đang tìm kiếm, hiển thị thêm 1 cái Tag màu vàng bên cạnh tên Tổ
                 let catBadge = isSearchMode ? `<span style="background: #ffeb3b; color: #e65100; padding: 2px 8px; border-radius: 8px; font-size: 10px; font-weight: 900; box-shadow: 0 2px 4px rgba(0,0,0,0.15); letter-spacing: 0.5px; border: 1px solid #fbc02d; margin-left: 5px;">📍 ${categoryName}</span>` : '';
 
                 html += `<div class="group-table-section">
@@ -562,7 +595,7 @@
                                 <tr>
                                     <th class="col-stt">STT</th>
                                     <th class="col-name" style="text-align: left;">HỌ VÀ TÊN</th>
-                                    <th class="col-desk">${titleMaBan}</th>
+                                    ${hasDeskCol ? `<th class="col-desk">${titleMaBan}</th>` : ''}
                                     <th class="col-role">VAI TRÒ</th>
                                     <th class="col-phone">LIÊN HỆ</th>
                                 </tr>
@@ -612,19 +645,23 @@
                          phoneHtmlDesktop = `<div class="phone-desktop" style="color: #888; font-size: 13px; font-weight: bold;">📞 ${rawPhone}</div>`;
                     }
 
-                    let maBan = nv.maBan || nv.soQuay || "-";
-                    let maBanHtml = (maBan !== "-") ? `<span class="desk-box">${maBan}</span>` : '';
+                    let maBanHtml = '';
+                    if (hasDeskCol) {
+                        let maBan = nv.maBan || nv.soQuay || "-";
+                        let deskBox = (maBan !== "-") ? `<span class="desk-box">${maBan}</span>` : '';
+                        maBanHtml = `<td class="col-desk" style="text-align: center;">${deskBox}</td>`;
+                    }
 
                     let sttDisplay = nv.stt || nv.tt || (idx + 1);
 
                     html += `<tr class="${isTruong || isPho ? 'leader-row' : ''}">
                         <td class="col-stt col-text-blue" style="text-align: center;">${sttDisplay}</td>
                         <td class="col-name" style="text-align: left;">
-                            <div class="col-text-blue" style="font-size: 14px;">${nv.hoTen}</div>
+                            <div class="col-text-blue" style="font-size: 14px; white-space: nowrap;">${nv.hoTen}</div>
                             ${phoneHtmlMobile}
                         </td>
-                        <td class="col-desk" style="text-align: center;">${maBanHtml}</td>
-                        <td class="col-role" style="text-align: center;"><span class="badge ${badgeClass}">${displayRole}</span></td>
+                        ${maBanHtml}
+                        <td class="col-role" style="text-align: center;"><span class="badge ${badgeClass}" style="white-space: nowrap;">${displayRole}</span></td>
                         <td class="col-phone">${phoneHtmlDesktop}</td>
                     </tr>`;
                 });
