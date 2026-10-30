@@ -566,7 +566,7 @@
                                     ${groupName.toUpperCase()} ${catBadge}
                                 </div>
                                 <div class="theme-group-hs">${group.chuongHs || ""}</div>
-                                ${group.moTa ? `<button class="toggle-btn" onclick="toggleCommodity(this)">Chi tiết hàng hóa <span class="arrow">▼</span></button>
+                                ${group.moTa ? `<button class="toggle-btn" onclick="window.toggleCommodity(this)">Chi tiết hàng hóa <span class="arrow">▼</span></button>
                                 <div class="theme-group-commodity">${group.moTa}</div>` : ''}
                             </div>
                         </div>
@@ -673,7 +673,7 @@
             .catch(err => {
                 document.getElementById('loading').innerHTML = "❌ Không tìm thấy dữ liệu. Vui lòng kiểm tra lại file data.json.";
             });
-            function toggleCommodity(btn) {
+            window.toggleCommodity = function(btn) {
             btn.classList.toggle('open');
             let content = btn.nextElementSibling;
             if (content.classList.contains('show')) {
