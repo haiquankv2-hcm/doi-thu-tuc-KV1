@@ -575,56 +575,56 @@
         "moTa": "Kiểm tra hồ sơ hải quan (Bước 2)",
         "danhSachNhanVien": [
           {
-            "tt": 8,
+            "tt": 01,
             "hoTen": "Bùi Thị Tuyết Trinh",
             "phanCong": "Phó Trưởng Bộ phận Thủ tục HHXK, phụ trách bước 2, TNTX",
             "dienThoai": "0919.888.879",
             "soQuay": "09"
           },
           {
-            "tt": 2,
+            "tt": 02,
             "hoTen": "Huỳnh Thanh Đạm",
             "phanCong": "Kiểm tra hồ sơ",
             "dienThoai": "0918.891.382",
             "soQuay": "01"
           },
           {
-            "tt": 3,
+            "tt": 03,
             "hoTen": "Huỳnh Thoại Tâm Đăng",
             "phanCong": "Kiểm tra hồ sơ",
             "dienThoai": "0919.443.535",
             "soQuay": "03"
           },
           {
-            "tt": 4,
+            "tt": 04,
             "hoTen": "Đỗ Văn Tuấn",
             "phanCong": "Kiểm tra hồ sơ",
             "dienThoai": "0962.051.276",
             "soQuay": "05"
           },
           {
-            "tt": 5,
+            "tt": 05,
             "hoTen": "Trần Thu Hà",
             "phanCong": "Kiểm tra hồ sơ",
             "dienThoai": "0933.839.354",
             "soQuay": "06"
           },
           {
-            "tt": 6,
+            "tt": 06,
             "hoTen": "Trần Thị Phương Lan",
             "phanCong": "Kiểm tra hồ sơ",
             "dienThoai": "0989.667.979",
             "soQuay": "07"
           },
           {
-            "tt": 7,
+            "tt": 07,
             "hoTen": "Nguyễn Thế Định",
             "phanCong": "Kiểm tra hồ sơ",
             "dienThoai": "0355.365.865",
             "soQuay": "08"
           },
           {
-            "tt": 9,
+            "tt": 08,
             "hoTen": "Hoàng Quang Vinh",
             "phanCong": "Kiểm tra hồ sơ",
             "dienThoai": "0908.449.732",
@@ -637,21 +637,21 @@
         "moTa": "Tham vấn giá và Hỗ trợ CNTT",
         "danhSachNhanVien": [
           {
-            "tt": 10,
+            "tt": 01,
             "hoTen": "Nguyễn Thị Đào Nguyên",
             "phanCong": "Tham vấn giá",
             "dienThoai": "0908.403.479",
             "soQuay": "15"
           },
           {
-            "tt": 11,
+            "tt": 02,
             "hoTen": "Phạm Ngọc Bảo",
             "phanCong": "Tham vấn giá",
             "dienThoai": "0989.241.111",
             "soQuay": "16"
           },
           {
-            "tt": 12,
+            "tt": 03,
             "hoTen": "Nguyễn Hải Minh",
             "phanCong": "CNTT",
             "dienThoai": "0908.278.275"
@@ -663,27 +663,27 @@
         "moTa": "Kiểm tra thực tế hàng hóa (Bước 3)",
         "danhSachNhanVien": [
           {
-            "tt": 16,
+            "tt": 01,
             "hoTen": "Dương Thành Công",
             "phanCong": "Trưởng Bộ phận Thủ tục HHXK, phụ trách bước 3, Tham vấn giá, QLRR",
             "dienThoai": "0919.323.302"
           },
           {
-            "tt": 13,
+            "tt": 02,
             "hoTen": "Nguyễn Ngọc Hiếu",
             "phanCong": "Kiểm tra TTHH",
             "dienThoai": "0924.142.142",
             "soQuay": "10"
           },
           {
-            "tt": 14,
+            "tt": 03,
             "hoTen": "Trần Đức Cường",
             "phanCong": "Kiểm tra TTHH",
             "dienThoai": "0973.300.747",
             "soQuay": "12"
           },
           {
-            "tt": 15,
+            "tt": 04,
             "hoTen": "Bùi Chiến Thắng",
             "phanCong": "Kiểm tra TTHH",
             "dienThoai": "0906.429.999",
