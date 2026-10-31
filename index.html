@@ -686,8 +686,10 @@
             })
             .catch(err => {
                 document.getElementById('loading').innerHTML = "❌ Không tìm thấy dữ liệu. Vui lòng kiểm tra lại file data.json.";
+                console.error(err);
             });
-                            window.toggleCommodity = function(btn) {
+            
+        window.toggleCommodity = function(btn) {
             btn.classList.toggle('open');
             let content = btn.nextElementSibling;
             if (content.classList.contains('show')) {
@@ -695,14 +697,7 @@
             } else {
                 content.classList.add('show');
             }
-        }; else {
-                content.classList.add('show');
-            }
-        }; else {
-                content.classList.add('show');
-            }
-        }
-
+        };
     </script>
 </body>
 </html>
