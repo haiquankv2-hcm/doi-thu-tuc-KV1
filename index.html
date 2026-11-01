@@ -311,11 +311,10 @@
         /* =========================================
            THIẾT KẾ RESPONSIVE
            ========================================= */
-        /* Căn chỉnh lại tỷ lệ cột trên Mobile để không đè chữ */
-        .col-stt { width: 12%; } /* Thu nhỏ tối đa STT */
-        .col-name { width: 45%; } /* Mở rộng cột tên */
+        .col-stt { width: 10%; }
+        .col-name { width: 30%; }
         .col-desk { width: 15%; }
-        .col-role { width: 43%; max-width: 0; } /* Trả lại không gian vừa phải cho Vai trò */
+        .col-role { width: 45%; max-width: 0; } /* Tăng chiều rộng cột vai trò lên để có không gian rớt dòng */
         .col-phone { display: none; } 
         .phone-mobile { display: block; }
         .phone-desktop { display: none; }
@@ -633,9 +632,9 @@
                             <div class="theme-group-number">${soTo}</div>
                             <div class="theme-group-details">
                                 <div class="theme-group-name">
-                                    ${groupName.toUpperCase()} ${catBadge}
+                                    ${groupName.toUpperCase().replace("PHỤ LỤC: ", "")} ${catBadge}
                                 </div>
-                                <div class="theme-group-hs">${group.chuongHs || ""}</div>
+                                                                <div class="theme-group-hs">${group.chuongHs ? (group.chuongHs.match(/^\d/) ? 'Chương ' + group.chuongHs : group.chuongHs) : ""}</div>
                                 ${group.moTa ? `<button class="toggle-btn" onclick="window.toggleCommodity(this)">Chi tiết hàng hóa <span class="arrow">▼</span></button>
                                 <div class="theme-group-commodity">${group.moTa}</div>` : ''}
                             </div>
@@ -709,12 +708,12 @@
                         maBanHtml = `<td class="col-desk" style="text-align: center;">${deskBox}</td>`;
                     }
 
-                    let sttDisplay = String(nv.stt || nv.tt || (idx + 1)).padStart(2, '0');
+                    let sttDisplay = nv.stt || nv.tt || (idx + 1);
 
                     html += `<tr class="${isTruong || isPho ? 'leader-row' : ''}">
                         <td class="col-stt col-text-blue" style="text-align: center;">${sttDisplay}</td>
                         <td class="col-name" style="text-align: left;">
-                            <div class="col-text-blue" style="font-size: 14px; white-space: normal; word-wrap: break-word;">${nv.hoTen}</div>
+                            <div class="col-text-blue" style="font-size: 14px; white-space: nowrap;">${nv.hoTen}</div>
                             ${phoneHtmlMobile}
                         </td>
                         ${maBanHtml}
