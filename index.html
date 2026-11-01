@@ -250,8 +250,8 @@
         
         /* BẢNG BIỂU NỀN TRONG SUỐT */
         .staff-table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
-        .staff-table th { color: #333; padding: 12px 5px; border-bottom: 2px solid rgba(255, 255, 255, 0.7); word-wrap: break-word; text-align: center; font-weight: bold; text-transform: uppercase; font-size: 11px;}
-        .staff-table td { padding: 12px 5px; border-bottom: 1px solid rgba(255, 255, 255, 0.5); vertical-align: middle; word-wrap: break-word; }
+        .staff-table th { color: #333; padding: 12px 5px; border-bottom: 2px solid rgba(255, 255, 255, 0.7); word-wrap: break-word; text-align: center; font-weight: bold; text-transform: uppercase; font-size: 11px; border-right: 1px solid rgba(0,0,0,0.05); }
+        .staff-table td { padding: 12px 5px; border-bottom: 1px solid rgba(255, 255, 255, 0.5); vertical-align: middle; word-wrap: break-word; border-right: 1px solid rgba(0,0,0,0.05); }
         .staff-table tr:last-child td { border-bottom: none; }
         .staff-table tr.leader-row td { background-color: rgba(255, 255, 255, 0.6); }
         .col-text-blue { color: #1976d2; font-weight: bold; }
@@ -277,7 +277,7 @@
             font-size: 10px; 
             font-weight: bold; 
             text-align: center; /* Vẫn canh giữa trong bản thân cái badge */
-            float: right; /* Đẩy cái badge về sát mép phải của cột */
+            
             line-height: 1.3; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
             white-space: nowrap !important; /* Ép buộc nằm 1 dòng */
@@ -312,10 +312,11 @@
         /* =========================================
            THIẾT KẾ RESPONSIVE
            ========================================= */
-        .col-stt { width: 10%; }
-        .col-name { width: 30%; }
-        .col-desk { width: 15%; }
-        .col-role { width: 45%; max-width: 0; } /* Tăng chiều rộng cột vai trò lên để có không gian rớt dòng */
+        /* Căn chỉnh lại tỷ lệ cột trên Mobile */
+        .col-stt { width: 8%; } 
+        .col-name { width: 48%; padding-right: 2px; } /* Tăng chiều rộng để tên luôn nằm trên 1 dòng */
+        .col-desk { width: 12%; text-align: center; } /* Đẩy Mã bàn sang phải một chút bằng cách thu hẹp nó */
+        .col-role { width: 32%; text-align: center !important; } /* Vai trò dịch sang phải nhưng nội dung (huy hiệu) vẫn canh giữa ô */
         .col-phone { display: none; } 
         .phone-mobile { display: block; }
         .phone-desktop { display: none; }
@@ -687,7 +688,7 @@
                         let viberLink = `viber://chat?number=+84${phoneClean.substring(1)}`;
 
                         phoneHtmlMobile = `<div class="phone-mobile" style="margin-top: 4px;">
-                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 12px; font-weight: bold; background: rgba(255, 255, 255, 0.7); padding: 2px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: inline-block;">📞 ${rawPhone}</a>
+                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 11.5px; font-weight: bold; background: rgba(255, 255, 255, 0.7); padding: 4px 6px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: inline-flex; align-items: center; gap: 4px; white-space: nowrap !important; max-width: 100%;">📞 ${rawPhone}</a>
                         </div>`;
 
                         phoneHtmlDesktop = `<div class="phone-desktop">
@@ -714,7 +715,7 @@
                     html += `<tr class="${isTruong || isPho ? 'leader-row' : ''}">
                         <td class="col-stt col-text-blue" style="text-align: center;">${String(sttDisplay).padStart(2, '0')}</td>
                         <td class="col-name" style="text-align: left;">
-                            <div class="col-text-blue" style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; max-width: 100%; display: inline-block;">${nv.hoTen}</div>
+                            <div class="col-text-blue" style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; max-width: 100%; display: block;">${nv.hoTen}</div>
                             ${phoneHtmlMobile}
                         </td>
                         ${maBanHtml}
