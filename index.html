@@ -272,17 +272,17 @@
         /* TẠO MÀU SẮC RIÊNG CHO TỪNG VAI TRÒ */
         .badge { 
             display: inline-block; 
-            padding: 6px 8px; 
-            border-radius: 8px; 
-            font-size: 11px; 
+            padding: 4px 4px; /* Thu nhỏ lề để tiết kiệm diện tích */
+            border-radius: 6px; 
+            font-size: 10px; /* Thu nhỏ chữ để vừa 1 dòng */
             font-weight: bold; 
             text-align: center; 
-            line-height: 1.4; 
+            line-height: 1.3; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
-            white-space: normal !important; /* Bắt buộc cho phép bẻ dòng */
-            word-wrap: break-word; 
-            overflow-wrap: break-word;
-            width: 100%;
+            white-space: nowrap !important; /* Ép buộc nằm 1 dòng */
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Thêm dấu ... nếu lỡ quá dài ở màn hình cực nhỏ */
             box-sizing: border-box;
         }
         .badge-nhom-truong { background: linear-gradient(135deg, #fffde7, #fff9c4); color: #e65100; border: 1px solid rgba(255, 255, 255, 0.8); }
@@ -686,7 +686,7 @@
                         let viberLink = `viber://chat?number=+84${phoneClean.substring(1)}`;
 
                         phoneHtmlMobile = `<div class="phone-mobile" style="margin-top: 4px;">
-                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 12px; font-weight: bold; background: rgba(255, 255, 255, 0.7); padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; gap: 4px; width: fit-content; white-space: nowrap;"><span>📞</span> <span>${rawPhone}</span></a>
+                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 12px; font-weight: bold; background: rgba(255, 255, 255, 0.7); padding: 2px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: inline-block;">📞 ${rawPhone}</a>
                         </div>`;
 
                         phoneHtmlDesktop = `<div class="phone-desktop">
@@ -713,7 +713,7 @@
                     html += `<tr class="${isTruong || isPho ? 'leader-row' : ''}">
                         <td class="col-stt col-text-blue" style="text-align: center;">${sttDisplay}</td>
                         <td class="col-name" style="text-align: left;">
-                            <div class="col-text-blue" style="font-size: 14px; white-space: normal; word-wrap: break-word; overflow-wrap: anywhere; line-height: 1.3; padding-right: 5px;">${nv.hoTen}</div>
+                            <div class="col-text-blue" style="font-size: 13.5px; white-space: normal; word-break: break-word; overflow-wrap: break-word; line-height: 1.2;">${nv.hoTen}</div>
                             ${phoneHtmlMobile}
                         </td>
                         ${maBanHtml}
