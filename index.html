@@ -277,13 +277,12 @@
             font-size: 10px; 
             font-weight: bold; 
             text-align: center; /* Vẫn canh giữa trong bản thân cái badge */
-            
             line-height: 1.3; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
-            white-space: nowrap !important; /* Ép buộc nằm 1 dòng */
+            white-space: normal !important; /* Cho phép rớt dòng thoải mái */
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
             max-width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis; /* Thêm dấu ... nếu lỡ quá dài ở màn hình cực nhỏ */
             box-sizing: border-box;
         }
         .badge-nhom-truong { background: linear-gradient(135deg, #fffde7, #fff9c4); color: #e65100; border: 1px solid rgba(255, 255, 255, 0.8); }
@@ -312,7 +311,6 @@
         /* =========================================
            THIẾT KẾ RESPONSIVE
            ========================================= */
-        /* Căn chỉnh lại tỷ lệ cột trên Mobile */
         .col-stt { width: 8%; } 
         .col-name { width: 48%; padding-right: 2px; } /* Tăng chiều rộng để tên luôn nằm trên 1 dòng */
         .col-desk { width: 12%; text-align: center; } /* Đẩy Mã bàn sang phải một chút bằng cách thu hẹp nó */
