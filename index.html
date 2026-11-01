@@ -686,7 +686,7 @@
                         let viberLink = `viber://chat?number=+84${phoneClean.substring(1)}`;
 
                         phoneHtmlMobile = `<div class="phone-mobile" style="margin-top: 4px;">
-                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 12px; font-weight: bold; background: rgba(255, 255, 255, 0.7); padding: 2px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: inline-block;">📞 ${rawPhone}</a>
+                            <a href="tel:${phoneClean}" style="color: #0068ff; text-decoration: none; font-size: 12px; font-weight: bold; background: rgba(255, 255, 255, 0.7); padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; gap: 4px; width: fit-content; white-space: nowrap;"><span>📞</span> <span>${rawPhone}</span></a>
                         </div>`;
 
                         phoneHtmlDesktop = `<div class="phone-desktop">
@@ -713,7 +713,7 @@
                     html += `<tr class="${isTruong || isPho ? 'leader-row' : ''}">
                         <td class="col-stt col-text-blue" style="text-align: center;">${sttDisplay}</td>
                         <td class="col-name" style="text-align: left;">
-                            <div class="col-text-blue" style="font-size: 14px; white-space: nowrap;">${nv.hoTen}</div>
+                            <div class="col-text-blue" style="font-size: 14px; white-space: normal; word-wrap: break-word; overflow-wrap: anywhere; line-height: 1.3; padding-right: 5px;">${nv.hoTen}</div>
                             ${phoneHtmlMobile}
                         </td>
                         ${maBanHtml}
