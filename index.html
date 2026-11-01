@@ -272,11 +272,12 @@
         /* TẠO MÀU SẮC RIÊNG CHO TỪNG VAI TRÒ */
         .badge { 
             display: inline-block; 
-            padding: 4px 4px; /* Thu nhỏ lề để tiết kiệm diện tích */
+            padding: 4px 6px; 
             border-radius: 6px; 
-            font-size: 10px; /* Thu nhỏ chữ để vừa 1 dòng */
+            font-size: 10px; 
             font-weight: bold; 
-            text-align: center; 
+            text-align: center; /* Vẫn canh giữa trong bản thân cái badge */
+            float: right; /* Đẩy cái badge về sát mép phải của cột */
             line-height: 1.3; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
             white-space: nowrap !important; /* Ép buộc nằm 1 dòng */
@@ -711,9 +712,9 @@
                     let sttDisplay = nv.stt || nv.tt || (idx + 1);
 
                     html += `<tr class="${isTruong || isPho ? 'leader-row' : ''}">
-                        <td class="col-stt col-text-blue" style="text-align: center;">${sttDisplay}</td>
+                        <td class="col-stt col-text-blue" style="text-align: center;">${String(sttDisplay).padStart(2, '0')}</td>
                         <td class="col-name" style="text-align: left;">
-                            <div class="col-text-blue" style="font-size: 13.5px; white-space: normal; word-break: break-word; overflow-wrap: break-word; line-height: 1.2;">${nv.hoTen}</div>
+                            <div class="col-text-blue" style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; max-width: 100%; display: inline-block;">${nv.hoTen}</div>
                             ${phoneHtmlMobile}
                         </td>
                         ${maBanHtml}
